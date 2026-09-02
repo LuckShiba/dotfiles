@@ -1,0 +1,127 @@
+(defsrc
+  mwu mwd mlft mmid mrgt
+)
+
+(defvar
+  tt  150
+  ht  150
+  ptt 250
+)
+
+(defalias
+  s_o (tap-hold-press 200 300 M-o lmet)
+  nuhuh (push-msg "nuhuh")
+)
+
+(deftemplate tap (key hold)
+  $key (switch
+    ((key-timing 3 less-than 250)) $key break
+    () (tap-hold-release-timeout $tt $ht $key $hold $hold) break
+  )
+)
+
+(deflayermap (base)
+  caps (tap-hold-press $tt $ht esc (layer-toggle nav))
+  esc (tap-hold 200 300 caps (layer-switch game))
+  (t! tap spc (layer-toggle mouse))
+
+  (t! tap a lmet)
+  (t! tap s lalt)
+  (t! tap d lctl)
+  (t! tap f lsft)
+
+  (t! tap j rsft)
+  (t! tap k rctl)
+  (t! tap l ralt)
+  (t! tap ; rmet)
+
+  (t! tap p (layer-toggle p))
+
+  lctl @nuhuh
+  lsft @nuhuh
+  lalt @nuhuh
+  lmet @nuhuh
+)
+
+(deflayermap (game)
+  caps esc
+  esc (tap-hold 200 300 caps (layer-switch base))
+  lmet @s_o
+)
+
+(deflayermap (p)
+  a (tap-dance-eager $ptt (
+    RA-a
+    (macro bspc RA-S-grv a)
+    (macro bspc (unshift ralt grv) a)
+    (macro bspc (unshift ralt 6) a)
+  ))
+
+  e (tap-dance-eager $ptt (
+    RA-e
+    (macro bspc (unshift ralt 6) e)
+  ))
+
+  i (tap-dance-eager $ptt (
+    RA-i
+  ))
+
+  o (tap-dance-eager $ptt (
+    RA-o
+    (macro bspc RA-S-grv o)
+    (macro bspc (unshift ralt 6) o)
+    (macro bspc RA-S-apo o)
+  ))
+
+  u (tap-dance-eager $ptt (
+    RA-u
+    (macro bspc RA-S-apo u)
+  ))
+
+  c (tap-dance-eager $ptt (
+    (unshift ralt ,)
+  ))
+
+  s (tap-dance-eager $ptt (
+    RA-s
+  ))
+)
+
+(deflayermap (nav)
+  h left
+  j down
+  k up
+  l rght
+  m pgup
+  n pgdn
+  i home
+  o end
+  , del
+  . bspc
+  / esc
+)
+
+(defvar
+  movemouse-interval 5
+  movemouse-accel-time 210
+  movemouse-min 1
+  movemouse-max 10
+  mwheel-interval 30
+  mwheel-distance 60
+)
+
+(deflayermap (mouse)
+  w (movemouse-accel-up    $movemouse-interval $movemouse-accel-time $movemouse-min $movemouse-max)
+  a (movemouse-accel-left  $movemouse-interval $movemouse-accel-time $movemouse-min $movemouse-max)
+  s (movemouse-accel-down  $movemouse-interval $movemouse-accel-time $movemouse-min $movemouse-max)
+  d (movemouse-accel-right $movemouse-interval $movemouse-accel-time $movemouse-min $movemouse-max)
+  lalt mlft
+  lsft mrgt
+  j mlft
+  k mrgt
+  l mmid
+  z (mwheel-up   $mwheel-interval $mwheel-distance)
+  x (mwheel-down $mwheel-interval $mwheel-distance)
+  lctl (movemouse-speed 10)
+  i (movemouse-speed 20)
+)

@@ -1,0 +1,33 @@
+theme = "ayu_evolve"
+
+[editor]
+bufferline = "multiple"
+cursorline = true
+end-of-line-diagnostics = "hint"
+
+[editor.breadcrumb]
+enable = true
+
+[editor.indent-guides]
+render = true
+skip-levels = 1
+
+[editor.cursor-shape]
+insert = "bar"
+
+[editor.inline-diagnostics]
+cursor-line = "warning"
+
+[keys.normal]
+tab = "move_parent_node_end"
+S-tab = "move_parent_node_start"
+S-ret = ":write"
+
+[keys.insert]
+S-tab = "move_parent_node_start"
+S-ret = ":write"
+
+[keys.select]
+tab = "extend_parent_node_end"
+S-tab = "extend_parent_node_start"
+S-ret = ":write"
