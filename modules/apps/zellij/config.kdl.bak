@@ -1,0 +1,13 @@
+default_mode "normal"
+scrollback_editor "hx"
+copy_command "dms clipboard copy"
+
+pane_frames false
+
+ui {
+	pane_frames {
+		hide_session_name true
+	}
+}
+
+theme "lucario"

@@ -18,6 +18,7 @@
       adwaita-icon-theme
       nautilus
       gsettings-desktop-schemas
+      kdePackages.breeze
     ];
 
     hj.environment.sessionVariables.GSETTINGS_SCHEMA_DIR =

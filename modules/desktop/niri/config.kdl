@@ -12,7 +12,7 @@ input {
     natural-scroll
   }
   tablet {
-    map-to-output "eDP-1"
+    map-to-output "DP-3"
   }
 }
 

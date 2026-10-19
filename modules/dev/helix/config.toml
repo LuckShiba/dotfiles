@@ -1,9 +1,10 @@
-theme = "ayu_evolve"
+theme = "neonotte84"
 
 [editor]
 bufferline = "multiple"
 cursorline = true
 end-of-line-diagnostics = "hint"
+color-modes = true
 
 [editor.breadcrumb]
 enable = true
@@ -22,6 +23,8 @@ cursor-line = "warning"
 tab = "move_parent_node_end"
 S-tab = "move_parent_node_start"
 S-ret = ":write"
+A-w = ["move_prev_word_start", "move_next_word_end"]
+A-W = ["move_prev_long_word_start", "move_next_long_word_end"]
 
 [keys.insert]
 S-tab = "move_parent_node_start"
@@ -31,3 +34,13 @@ S-ret = ":write"
 tab = "extend_parent_node_end"
 S-tab = "extend_parent_node_start"
 S-ret = ":write"
+A-w = ["move_prev_word_start", "move_next_word_end"]
+A-W = ["move_prev_long_word_start", "move_next_long_word_end"]
+
+[editor.statusline]
+left = ["mode", "spacer", "spinner", "spacer", "version-control"]
+
+center = ["file-name", "read-only-indicator", "file-modification-indicator"]
+
+right = ["workspace-diagnostics", "spacer", "selections", "spacer", "position", "position-percentage", "spacer", "file-type", "file-encoding"]
+

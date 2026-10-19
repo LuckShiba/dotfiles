@@ -13,6 +13,7 @@ in
   config = lib.mkIf config.dotfiles.enable {
     programs.fish = lib.mkIf isFish {
       enable = true;
+      useBabelfish = true;
 
       interactiveShellInit =
         let
@@ -23,14 +24,14 @@ in
           [
             (mkFishInit' pkgs.nix-your-shell "fish")
             (mkFishInit' pkgs.fzf "--fish")
-            (mkFishInit "zoxide" "init fish")
-            (mkFishInit "pay-respects" "fish")
-            (mkFishInit "direnv" "hook fish")
-            ''
-              if test "$TERM" != "dumb"
-                ${mkFishInit "starship" "init fish"}
-              end
-            ''
+            # (mkFishInit "zoxide" "init fish")
+            # (mkFishInit "pay-respects" "fish")
+            # (mkFishInit "direnv" "hook fish")
+            # ''
+            # if test "$TERM" != "dumb"
+            # ${mkFishInit "starship" "init fish"}
+            # end
+            # ''
           ]
           # source: https://github.com/nix-community/home-manager/blob/3ee51fbdac8c8bdfe1e7e1fcaba6520a563f394f/modules/programs/kitty.nix#L64
           ++ lib.optional config.dotfiles.apps.kitty.enable ''
@@ -40,6 +41,23 @@ in
               set --prepend fish_complete_path "$KITTY_INSTALLATION_DIR/shell-integration/fish/vendor_completions.d"
             end
           ''
+          ++ [
+            ''
+              abbr -a s  -- systemctl
+              abbr -a su -- 'systemctl --user'
+              abbr -a -c systemctl sysctl-dr -r dr -- daemon-reload
+              abbr -a -c systemctl sysctl-d -r d -- disable
+              abbr -a -c systemctl sysctl-e -r e -- enable
+              abbr -a -c systemctl sysctl-r -r r -- restart
+              abbr -a -c systemctl sysctl-s -r s -- start
+              abbr -a -c systemctl sysctl-c -r c -- status
+              abbr -a -c systemctl sysctl-o -r o -- stop
+              abbr -a -c systemctl sysctl-u -r u -- --user
+              
+              abbr -a j  -- journalctl
+              abbr -a -c journalctl journal-u -r u -- --user              
+            ''
+          ]
         );
 
       shellAliases = {

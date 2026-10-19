@@ -19,7 +19,12 @@
     };
 
     niri = {
-      url = "github:YaLTeR/niri";
+      url = "github:LuckShiba/niri";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    xwl-s = {
+      url = "github:Supreeeme/xwayland-satellite";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

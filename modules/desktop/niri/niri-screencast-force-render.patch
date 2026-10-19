@@ -66,3 +66,5 @@ index 3db1f66c..ad7b1020 100644
 +            if let Some(output) = primary_scan_out_output(surface, states, is_window_cast_target) {
                  return Some(output);
              }
+ 
+ 

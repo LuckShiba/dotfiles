@@ -37,16 +37,26 @@
 
   (t! tap p (layer-toggle p))
 
-  lctl @nuhuh
-  lsft @nuhuh
-  lalt @nuhuh
-  lmet @nuhuh
+  ;; lctl @nuhuh
+  ;; lsft @nuhuh
+  ;; lalt @nuhuh
+  ;; lmet @nuhuh
+
+  lmet @s_o
+
+  left @nuhuh
+  right @nuhuh
+  up @nuhuh
+  down @nuhuh
+  rsft @nuhuh
+  rctl @nuhuh
 )
 
 (deflayermap (game)
   caps esc
   esc (tap-hold 200 300 caps (layer-switch base))
   lmet @s_o
+  (t! tap p (layer-toggle p))
 )
 
 (deflayermap (p)

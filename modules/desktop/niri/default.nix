@@ -57,7 +57,7 @@ in
     };
 
     hj.packages = [
-      pkgs.xwayland-satellite
+      (inputs'.xwl-s.packages.${pkgs.stdenv.hostPlatform.system}.default)
       pkgs.nushell
       pkgs.jq
     ];
@@ -68,10 +68,28 @@ in
         let
           niriPackage = inputs'.niri.packages.${pkgs.stdenv.hostPlatform.system}.niri;
         in
-        niriPackage.overrideAttrs {
-          doCheck = false;
-          patches = [ ./niri-screencast-force-render.patch ];
-        };
+          niriPackage.overrideAttrs {
+            doCheck = false;
+          };
+    };
+
+    xdg.portal = {
+      config.niri = {
+        "org.freedesktop.impl.portal.RemoteDesktop" = "wlr";
+      };
+      extraPortals = [
+        (pkgs.xdg-desktop-portal-wlr.overrideAttrs (old: {
+          src = pkgs.fetchFromGitHub {
+            owner = "David96";
+            repo = "xdg-desktop-portal-wlr";
+            rev = "bdd26ad0096290e1cc9a952e18732e8544f783bc";
+            hash = "sha256-9km9Gn8EwvASwbcAxDOdOsw/uOsjJfddQXFm5tBPD5c=";
+          };
+          buildInputs = old.buildInputs ++ [
+            pkgs.libxkbcommon
+          ];
+        }))
+      ];
     };
   };
 }

@@ -1,0 +1,13 @@
+# thank you axlefublr !
+# source: https://github.com/Axlefublr/dotfiles/blob/6de25123dd403e6e9e002238711e28bd57053d18/helix/languages.toml#L35
+
+[[language]]
+name = "kanata"
+scope = "source.kanata"
+indent = { tab-width = 3, unit = "\t" }
+file-types = [ "kbd" ]
+comment-tokens = [ ";;" ]
+
+[[grammar]]
+name = "kanata"
+source = { git = "https://github.com/glehmann/tree-sitter-kanata", rev = "e3f368ded70efbaeba0273390b1bbfb6c4a94c22" }

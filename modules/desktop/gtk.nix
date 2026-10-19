@@ -20,15 +20,10 @@ in
 {
   options.dotfiles.desktop.gtk = {
     enable = lib.mkEnableOption "GTK theming";
-    extraCss = lib.mkOption {
-      type = lib.types.lines;
-      default = "";
-    };
   };
 
   config = lib.mkIf cfg.enable {
     hj.xdg.config.files = {
-      "gtk-3.0/dank-colors.css".text = cfg.extraCss;
       "gtk-3.0/gtk.css" = {
         text = ''
           @import url("dank-colors.css");
@@ -39,7 +34,6 @@ in
         text = gtkSettings;
         type = "copy";
       };
-      "gtk-4.0/dank-colors.css".text = cfg.extraCss;
       "gtk-4.0/gtk.css" = {
         text = ''
           @import url("file://${themePkg}/share/themes/${themeName}/gtk-4.0/gtk.css");
