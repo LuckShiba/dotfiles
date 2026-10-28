@@ -1,23 +1,21 @@
 {
-  self,
   inputs,
   system,
   pkgs,
+  ...
 }:
 let
-  helixPackages = inputs.helix.packages.${system};
+  helix = inputs.helix.packages.${system}.helix;
 
-  helix =
-    if helixPackages ? helix then
-      helixPackages.helix
-    else
-      helixPackages.default;
   zen = pkgs.callPackage ./zen.nix {
     inherit inputs system;
   };
 in
 {
-  helium-browser = pkgs.callPackage ./helium-browser.nix { };
+  helium-browser = pkgs.callPackage ./helium-browser.nix {
+    src = inputs.helium-linux;
+    inherit (inputs._meta.helium-linux) version;
+  };
   inherit helix zen;
   zen-unwrapped = zen.unwrapped;
   default = helix;

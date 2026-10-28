@@ -5,6 +5,7 @@
     "dux-plugin-registry": "github:duxlabs-dev/dux-plugin-registry",
     "dux-shell": "github:duxlabs-dev/dux-shell",
     "fructose": "github:LuckShiba/fructose",
+    "helium-linux": "https://github.com/imputnet/helium-linux/releases/download/{tag}/helium-{tag}-x86_64.AppImage",
     "helix": "github:LuckShiba/helix",
     "hjem": "github:feel-co/hjem",
     "niri": "github:LuckShiba/niri",
@@ -17,9 +18,9 @@
     "type": "github",
     "owner": "duxlabs-dev",
     "repo": "dux-calendar",
-    "rev": "821fcb16bd425b4ffba8f5f18620b714b3cca038",
-    "narHash": "sha256-72aolG5kfoL4OcsbYDhtVFAlQ75qrxKHSXxvS2Amof4=",
-    "lastModified": 1793106542
+    "rev": "1cc2a78cb59ecb46099c0d4a2cf0f5b88c043360",
+    "narHash": "sha256-z8VvbeqohKOVktfdOhZsV7Q8RkESdtg5+rtBfmn5u2M=",
+    "lastModified": 1793196317
   },
   "dux-greeter": {
     "type": "github",
@@ -41,9 +42,9 @@
     "type": "github",
     "owner": "duxlabs-dev",
     "repo": "dux-shell",
-    "rev": "170e8f507467daf34d350dccdd3fa65cdabe5c74",
-    "narHash": "sha256-h4uz0BTNY9KcY2rSEJByYT8yEXXi5k57Y9rJWYmWHiE=",
-    "lastModified": 1793150588
+    "rev": "9d279e7f88c0ec3f9561a22a8b3b068a4c2992e7",
+    "narHash": "sha256-b8W2MX4wplGQx175G8aJCMWST7cfu7YgQIqpfOKDdEk=",
+    "lastModified": 1793197964
   },
   "fructose": {
     "type": "github",
@@ -52,6 +53,14 @@
     "rev": "bafc19c63e9ccbd660b4d1bb9f5e87298e8fc971",
     "narHash": "sha256-Opa5sCq8MaKv4Cwm8hiChXSEjBghZ0OwVNBYOm2B/UQ=",
     "lastModified": 1789780607
+  },
+  "helium-linux": {
+    "type": "fixed",
+    "url": "https://github.com/imputnet/helium-linux/releases/download/0.20.2.1/helium-0.20.2.1-x86_64.AppImage",
+    "sha256": "sha256-rEkoQk0xyGP/86t1076HPfyS7eAOaIljTcvFiBoSA5c=",
+    "unpack": "file",
+    "tag": "0.20.2.1",
+    "version": "0.20.2.1"
   },
   "helix": {
     "type": "github",
@@ -81,9 +90,9 @@
     "type": "github",
     "owner": "NixOS",
     "repo": "nixpkgs",
-    "rev": "d3b13ad75cc492690728f9307e443dec9ef9a20e",
-    "narHash": "sha256-pGPnZGi8y9d76xNeracniXO3dsYVROEmMkMc8jD0Ihc=",
-    "lastModified": 1792842277
+    "rev": "f05535a0efcb2134c478d1e88434fadf486d42b5",
+    "narHash": "sha256-2pkE69JpFRInaARSczZytcfPw83IL82E2KdhbWGwdMs=",
+    "lastModified": 1793136825
   },
   "tack": {
     "type": "github",
@@ -97,9 +106,9 @@
     "type": "github",
     "owner": "Supreeeme",
     "repo": "xwayland-satellite",
-    "rev": "45b912c6fbcbbc9bc22148c865e95a449d3b5c0e",
-    "narHash": "sha256-LJdlM4zm7UyOC0fxBdV1im+Mi/vEO63hxe4kAR+/kO0=",
-    "lastModified": 1793114320
+    "rev": "7bf5e0dcb0d4250860b24b04a6cb3ddeada515d0",
+    "narHash": "sha256-yOM2nAiwSxeeb3X4FYQwLIQtGN9GHgfKyGT6/FqHJ/Q=",
+    "lastModified": 1793192392
   },
   "zen-browser": {
     "type": "github",

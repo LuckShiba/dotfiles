@@ -23,6 +23,9 @@ fenix             = "fenix"
 rust-analyzer-src = "rust-analyzer"
 # rust-overlay      = "rust-overlay"
 
+[omit_inputs]
+names = ["flake-compat", "cachix"]
+
 # inputs.<name> fields
 #   url             required, shorturl ok, ?rev=<sha> pins an exact commit
 #   type            flake (default), fetch, or fixed
@@ -43,9 +46,6 @@ url = "dux:dux-greeter"
 
 [inputs.dux-shell]
 url = "dux:dux-shell"
-
-[inputs.dux-shell.follows]
-flake-compat = ""
 
 [inputs.dux-calendar]
 url = "dux:dux-calendar"
@@ -78,3 +78,9 @@ home-manager = ""
 
 [inputs.tack]
 url = "gh:manic-systems/tack"
+
+[inputs.helium-linux]
+url = "https://github.com/imputnet/helium-linux/releases/download/{tag}/helium-{tag}-x86_64.AppImage"
+type = "fixed"
+unpack = "file"
+tag = "{version}"
