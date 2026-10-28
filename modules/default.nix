@@ -14,6 +14,7 @@ in
     ./desktop
     ./dev
     ./kanata
+    ./kanata/fructose.nix
   ];
 
   options.dotfiles = {

@@ -11,9 +11,7 @@ input {
     tap
     natural-scroll
   }
-  tablet {
-    map-to-output "DP-3"
-  }
+  @tabletConfig@
 }
 
 cursor {

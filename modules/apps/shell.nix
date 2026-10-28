@@ -33,14 +33,6 @@ in
             # end
             # ''
           ]
-          # source: https://github.com/nix-community/home-manager/blob/3ee51fbdac8c8bdfe1e7e1fcaba6520a563f394f/modules/programs/kitty.nix#L64
-          ++ lib.optional config.dotfiles.apps.kitty.enable ''
-            if set -q KITTY_INSTALLATION_DIR
-              set --global KITTY_SHELL_INSTALLATION no-rc
-              source "$KITTY_INSTALLATION_DIR/shell-integration/fish/vendor_conf.d/kitty-shell-integration.fish"
-              set --prepend fish_complete_path "$KITTY_INSTALLATION_DIR/shell-integration/fish/vendor_completions.d"
-            end
-          ''
           ++ [
             ''
               abbr -a s  -- systemctl

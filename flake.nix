@@ -27,6 +27,32 @@
       url = "github:Supreeeme/xwayland-satellite";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    dankMaterialShell = {
+      url = "github:AvengeMedia/DankMaterialShell";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-compat.follows = "";
+    };
+
+    dms-plugin-registry = {
+      url = "github:AvengeMedia/dms-plugin-registry";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    dank-greeter = {
+      url = "github:AvengeMedia/dank-greeter";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    dankcalendar = {
+      url = "github:AvengeMedia/dankcalendar";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    fructose = {
+      url = "github:LuckShiba/fructose";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -49,7 +75,11 @@
         dotfiles = {
           _module.args.self' = self;
           _module.args.inputs' = inputs;
-          imports = [ ./modules ];
+          imports = [
+            ./modules
+            inputs.dankcalendar.nixosModules.default
+            inputs.dms-plugin-registry.nixosModules.default
+          ];
         };
         raw = self.nixosModules.dotfiles;
       };

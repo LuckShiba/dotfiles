@@ -39,6 +39,10 @@ in
       type = lib.types.str;
       default = "us(altgr-intl)";
     };
+    tablet.output = lib.mkOption {
+      type = lib.types.nullOr lib.types.str;
+      default = null;
+    };
     rawKdlExtra = lib.mkOption {
       type = lib.types.lines;
       default = "";
@@ -46,9 +50,29 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    systemd.user.services.niri.serviceConfig = lib.mkIf config.systemd.oomd.enable {
+      ManagedOOMMemoryPressure = "avoid";
+      ManagedOOMSwap = "avoid";
+      ManagedOOMPreference = "avoid";
+    };
+
+    services.pipewire = {
+      enable = true;
+      pulse.enable = true;
+      jack.enable = true;
+    };
+
+    services.gvfs.enable = true;
+    security.rtkit.enable = true;
+
     hj.xdg.config.files."niri/config.kdl" = {
       source = pkgs.replaceVars ./config.kdl {
         keyboardLayout = cfg.keyboard.layout;
+        tabletConfig = lib.optionalString (cfg.tablet.output != null) ''
+          tablet {
+            map-to-output "${cfg.tablet.output}"
+          }
+        '';
         editor = userCfg.editor;
         zenSpawnFocus = "${zen-spawn-focus}";
         rawKdlExtra = cfg.rawKdlExtra;
@@ -68,9 +92,9 @@ in
         let
           niriPackage = inputs'.niri.packages.${pkgs.stdenv.hostPlatform.system}.niri;
         in
-          niriPackage.overrideAttrs {
-            doCheck = false;
-          };
+        niriPackage.overrideAttrs {
+          doCheck = false;
+        };
     };
 
     xdg.portal = {

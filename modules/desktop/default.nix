@@ -7,22 +7,27 @@
 {
   imports = [
     ./gtk.nix
+    ./kdeconnect.nix
+    ./oomd.nix
     ./niri
+    ./niri/dms.nix
+    ./speech.nix
   ];
 
   options.dotfiles.desktop.enable = lib.mkEnableOption "desktop dotfiles";
 
   config = lib.mkIf config.dotfiles.desktop.enable {
     hj.packages = with pkgs; [
-      ((ffmpeg-full.override { withUnfree = true; }).overrideAttrs (_: { doCheck = false; }))
+      ((ffmpeg-full.override { withUnfree = true; }).overrideAttrs (_: {
+        doCheck = false;
+      }))
       adwaita-icon-theme
       nautilus
       gsettings-desktop-schemas
       kdePackages.breeze
     ];
 
-    hj.environment.sessionVariables.GSETTINGS_SCHEMA_DIR =
-      pkgs.glib.makeSchemaPath pkgs.gsettings-desktop-schemas pkgs.gsettings-desktop-schemas.name;
+    hj.environment.sessionVariables.GSETTINGS_SCHEMA_DIR = pkgs.glib.makeSchemaPath pkgs.gsettings-desktop-schemas pkgs.gsettings-desktop-schemas.name;
 
     hj.xdg.config.files."user-dirs.dirs".text = ''
       XDG_DESKTOP_DIR="$HOME/Desktop"
