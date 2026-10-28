@@ -1,63 +1,12 @@
 {
-  inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-
-    hjem = {
-      url = "github:feel-co/hjem";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    zen-browser = {
-      url = "github:0xc000022070/zen-browser-flake/beta";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "";
-    };
-
-    helix = {
-      url = "github:luckshiba/helix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    niri = {
-      url = "github:LuckShiba/niri";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    xwl-s = {
-      url = "github:Supreeeme/xwayland-satellite";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    dankMaterialShell = {
-      url = "github:AvengeMedia/DankMaterialShell";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-compat.follows = "";
-    };
-
-    dms-plugin-registry = {
-      url = "github:AvengeMedia/dms-plugin-registry";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    dank-greeter = {
-      url = "github:AvengeMedia/dank-greeter";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    dankcalendar = {
-      url = "github:AvengeMedia/dankcalendar";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    fructose = {
-      url = "github:LuckShiba/fructose";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-  };
-
   outputs =
-    inputs@{ self, nixpkgs, ... }:
+    { self, ... }@args:
     let
+      inputs = (import ./.tack) {
+        overrides = args.tackOverrides or { };
+      };
+      inherit (inputs) nixpkgs;
+
       lib = nixpkgs.lib;
       systems = [
         "x86_64-linux"
@@ -77,8 +26,8 @@
           _module.args.inputs' = inputs;
           imports = [
             ./modules
-            inputs.dankcalendar.nixosModules.default
-            inputs.dms-plugin-registry.nixosModules.default
+            inputs.dux-calendar.nixosModules.default
+            inputs.dux-plugin-registry.nixosModules.default
           ];
         };
         raw = self.nixosModules.dotfiles;
@@ -100,7 +49,10 @@
             nil
             nixd
             nixfmt
+            inputs.tack.packages.${system}.tack
           ];
+
+          TACK_NIX_CONF_TOKENS = 1;
         };
       });
     };

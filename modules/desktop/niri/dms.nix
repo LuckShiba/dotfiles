@@ -7,9 +7,9 @@
 }:
 let
   cfg = config.dotfiles.desktop.niri;
-  dmsCfg = config.dotfiles.desktop.dms;
+  duxCfg = config.dotfiles.desktop.dms;
   userCfg = config.dotfiles.user;
-  dmsPkgs = inputs'.dankMaterialShell.packages.${pkgs.stdenv.hostPlatform.system};
+  duxPkgs = inputs'.dux-shell.packages.${pkgs.stdenv.hostPlatform.system};
 in
 {
   options.dotfiles.desktop.dms = {
@@ -34,11 +34,11 @@ in
     };
   };
 
-  config = lib.mkIf (cfg.enable && dmsCfg.enable) {
+  config = lib.mkIf (cfg.enable && duxCfg.enable) {
     systemd.user.services.dms.environment = {
       DMS_MODAL_LAYER = "overlay";
-    } // lib.optionalAttrs (dmsCfg.ippHost != null) {
-      DMS_IPP_HOST = dmsCfg.ippHost;
+    } // lib.optionalAttrs (duxCfg.ippHost != null) {
+      DMS_IPP_HOST = duxCfg.ippHost;
     };
 
     dotfiles.desktop.niri.rawKdlExtra = lib.concatLines (
@@ -54,9 +54,9 @@ in
       ]
     );
 
-    programs.dms-shell = {
+    programs.dux-shell = {
       enable = true;
-      package = dmsPkgs.default.override {
+      package = duxPkgs.default.override {
         extraQtPackages = with pkgs.qt6Packages; [ qtwebsockets ];
       };
       systemd.target = "niri.service";
@@ -69,16 +69,16 @@ in
       };
     };
 
-    programs.dank-calendar.enable = true;
+    programs.dux-calendar.enable = true;
 
-    services.displayManager.dms-greeter = lib.mkIf dmsCfg.greeter.enable {
+    services.displayManager.dux-greeter = lib.mkIf duxCfg.greeter.enable {
       enable = true;
-      package = inputs'.dank-greeter.packages.${pkgs.stdenv.hostPlatform.system}.dms-greeter;
+      package = inputs'.dux-greeter.packages.${pkgs.stdenv.hostPlatform.system}.dms-greeter;
 
       compositor = {
         name = "niri";
         customConfig = ''
-          ${dmsCfg.greeter.outputs}
+          ${duxCfg.greeter.outputs}
           cursor {
             xcursor-theme "breeze_cursors"
             xcursor-size 24
@@ -104,7 +104,7 @@ in
       };
 
       configHome = userCfg.homeDirectory;
-      logs.save = dmsCfg.greeter.saveLogs;
+      logs.save = duxCfg.greeter.saveLogs;
     };
 
     hj.packages = [ pkgs.libqalculate ];

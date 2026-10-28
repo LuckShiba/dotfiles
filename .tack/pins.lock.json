@@ -1,0 +1,112 @@
+{
+  "$declared": {
+    "dux-calendar": "github:duxlabs-dev/dux-calendar",
+    "dux-greeter": "github:duxlabs-dev/dux-greeter",
+    "dux-plugin-registry": "github:duxlabs-dev/dux-plugin-registry",
+    "dux-shell": "github:duxlabs-dev/dux-shell",
+    "fructose": "github:LuckShiba/fructose",
+    "helix": "github:LuckShiba/helix",
+    "hjem": "github:feel-co/hjem",
+    "niri": "github:LuckShiba/niri",
+    "nixpkgs": "github:NixOS/nixpkgs/nixpkgs-unstable",
+    "tack": "github:manic-systems/tack",
+    "xwl-s": "github:Supreeeme/xwayland-satellite",
+    "zen-browser": "github:0xc000022070/zen-browser-flake/beta"
+  },
+  "dux-calendar": {
+    "type": "github",
+    "owner": "duxlabs-dev",
+    "repo": "dux-calendar",
+    "rev": "821fcb16bd425b4ffba8f5f18620b714b3cca038",
+    "narHash": "sha256-72aolG5kfoL4OcsbYDhtVFAlQ75qrxKHSXxvS2Amof4=",
+    "lastModified": 1793106542
+  },
+  "dux-greeter": {
+    "type": "github",
+    "owner": "duxlabs-dev",
+    "repo": "dux-greeter",
+    "rev": "0f5de0577cc118091cab9ed8d7976919f0161251",
+    "narHash": "sha256-UZQX8yFA4Kg2UlduElencdA+QXQO9LcQJCqWzUHGZMk=",
+    "lastModified": 1793106621
+  },
+  "dux-plugin-registry": {
+    "type": "github",
+    "owner": "duxlabs-dev",
+    "repo": "dux-plugin-registry",
+    "rev": "0fb79ce25b21a6dabac87f4211bf65becab68ae3",
+    "narHash": "sha256-H+HzU0rnqNEgACisaGfBR5CqU0jatBAO0lexFr6cEl8=",
+    "lastModified": 1793156972
+  },
+  "dux-shell": {
+    "type": "github",
+    "owner": "duxlabs-dev",
+    "repo": "dux-shell",
+    "rev": "170e8f507467daf34d350dccdd3fa65cdabe5c74",
+    "narHash": "sha256-h4uz0BTNY9KcY2rSEJByYT8yEXXi5k57Y9rJWYmWHiE=",
+    "lastModified": 1793150588
+  },
+  "fructose": {
+    "type": "github",
+    "owner": "LuckShiba",
+    "repo": "fructose",
+    "rev": "bafc19c63e9ccbd660b4d1bb9f5e87298e8fc971",
+    "narHash": "sha256-Opa5sCq8MaKv4Cwm8hiChXSEjBghZ0OwVNBYOm2B/UQ=",
+    "lastModified": 1789780607
+  },
+  "helix": {
+    "type": "github",
+    "owner": "LuckShiba",
+    "repo": "helix",
+    "rev": "f92c5d4e5ce8f2a139e48cd9444d1ae6efe07f9b",
+    "narHash": "sha256-1FFdj5+fP+M2IDSV8+JaTu72ogf9ITQKWdE7W8dQeWQ=",
+    "lastModified": 1791205762
+  },
+  "hjem": {
+    "type": "github",
+    "owner": "feel-co",
+    "repo": "hjem",
+    "rev": "d219ef55ab7311d884cf33e114561082fec95f34",
+    "narHash": "sha256-BohcZsIqBOd6YL6+jUkdM4GE+aQc72E6yrqVyt1z5X4=",
+    "lastModified": 1793026809
+  },
+  "niri": {
+    "type": "github",
+    "owner": "LuckShiba",
+    "repo": "niri",
+    "rev": "56f11821d46f2188869142e8514ae5a5f28a67ec",
+    "narHash": "sha256-MVkveUEEJmUmHzPQFyLX+iFPw3fD1A8/IWaUHAguzDA=",
+    "lastModified": 1792983078
+  },
+  "nixpkgs": {
+    "type": "github",
+    "owner": "NixOS",
+    "repo": "nixpkgs",
+    "rev": "d3b13ad75cc492690728f9307e443dec9ef9a20e",
+    "narHash": "sha256-pGPnZGi8y9d76xNeracniXO3dsYVROEmMkMc8jD0Ihc=",
+    "lastModified": 1792842277
+  },
+  "tack": {
+    "type": "github",
+    "owner": "manic-systems",
+    "repo": "tack",
+    "rev": "f7cce4f7e53c9482661b158824522fefef2d7920",
+    "narHash": "sha256-vOIIx/QU6xEjMZTMZM8GNNXS/p4Idvw8V09KT5zNwTI=",
+    "lastModified": 1792630541
+  },
+  "xwl-s": {
+    "type": "github",
+    "owner": "Supreeeme",
+    "repo": "xwayland-satellite",
+    "rev": "45b912c6fbcbbc9bc22148c865e95a449d3b5c0e",
+    "narHash": "sha256-LJdlM4zm7UyOC0fxBdV1im+Mi/vEO63hxe4kAR+/kO0=",
+    "lastModified": 1793114320
+  },
+  "zen-browser": {
+    "type": "github",
+    "owner": "0xc000022070",
+    "repo": "zen-browser-flake",
+    "rev": "f19490ac889eabb05bdb7e8dcb85225ee75bd87b",
+    "narHash": "sha256-kH/E0uJDslOgYcnmU+c0cm6HrUjsEtvZQKZtuQ1+uvo=",
+    "lastModified": 1792595242
+  }
+}
