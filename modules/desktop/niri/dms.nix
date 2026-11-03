@@ -9,7 +9,6 @@ let
   cfg = config.dotfiles.desktop.niri;
   duxCfg = config.dotfiles.desktop.dms;
   userCfg = config.dotfiles.user;
-  duxPkgs = inputs'.dux-shell.packages.${pkgs.stdenv.hostPlatform.system};
 in
 {
   options.dotfiles.desktop.dms = {
@@ -56,7 +55,7 @@ in
 
     programs.dux-shell = {
       enable = true;
-      package = duxPkgs.default.override {
+      package = (pkgs.lib'.fromInput inputs'.dux-shell).override {
         extraQtPackages = with pkgs.qt6Packages; [ qtwebsockets ];
       };
       systemd.target = "niri.service";
@@ -73,7 +72,7 @@ in
 
     services.displayManager.dux-greeter = lib.mkIf duxCfg.greeter.enable {
       enable = true;
-      package = inputs'.dux-greeter.packages.${pkgs.stdenv.hostPlatform.system}.dms-greeter;
+      package = pkgs.lib'.fromInput inputs'.dux-greeter;
 
       compositor = {
         name = "niri";

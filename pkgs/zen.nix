@@ -1,13 +1,10 @@
 {
   extraPolicies ? { },
   inputs,
-  system,
   pkgs,
 }:
 let
-  zenPackages = inputs.zen-browser.packages.${system};
-
-  zen-unwrapped = zenPackages.beta-unwrapped.overrideAttrs (oldAttrs: {
+  zen-unwrapped = (pkgs.lib'.fromInput' inputs.zen-browser "beta-unwrapped").overrideAttrs (oldAttrs: {
     nativeBuildInputs = (oldAttrs.nativeBuildInputs or [ ]) ++ (with pkgs; [ zip unzip ]);
 
     postFixup = (oldAttrs.postFixup or "") + ''

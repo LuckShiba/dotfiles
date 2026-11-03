@@ -15,8 +15,9 @@ in
   config = lib.mkIf cfg.enable {
     hj.packages = with pkgs; [
       kitty
-      nerd-fonts.blex-mono
     ];
+
+    fonts.packages = [ pkgs.nerd-fonts.blex-mono ];
 
     hj.xdg.config.files."kitty/kitty.conf" = {
       source = ./kitty.conf;

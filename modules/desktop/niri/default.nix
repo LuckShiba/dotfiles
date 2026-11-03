@@ -9,21 +9,17 @@ let
   cfg = config.dotfiles.desktop.niri;
   userCfg = config.dotfiles.user;
 
-  mkNuBin =
-    name: text:
-    pkgs.writers.makeScriptWriter {
-      interpreter = "/usr/bin/env -S ${lib.getExe pkgs.nushell} --no-std-lib -n";
-    } name text;
+  zen-spawn-focus = pkgs.lib'.writeNuBin "zen-spawn-focus" ''
+    let focused_ws = niri msg -j workspaces
+      | from json
+      | where is_focused == true
+      | first
 
-  zen-spawn-focus = mkNuBin "zen-spawn-focus" ''
-    let focused_ws = (niri msg -j workspaces | from json
-      | where is_focused
-      | first)
-
-    let zen = (niri msg -j windows | from json
+    let zen = niri msg -j windows
+      | from json
       | where app_id == "zen-beta" and workspace_id == $focused_ws.id
       | sort-by focus_timestamp.secs
-      | last)
+      | last
 
     if ($zen | is-not-empty) {
       niri msg action focus-window --id $zen.id
@@ -31,6 +27,20 @@ let
       zen-beta
     }
   '';
+
+  gcc = pkgs.gnome-control-center;
+  niriGCC = pkgs.symlinkJoin {
+    name = "gnome-control-center-niri";
+    paths = [ gcc ];
+    nativeBuildInputs = [ pkgs.makeWrapper ];
+
+    postBuild = ''
+      rm $out/bin/gnome-control-center
+
+      makeWrapper ${gcc}/bin/gnome-control-center $out/bin/gnome-control-center \
+        --set XDG_CURRENT_DESKTOP "GNOME"
+    '';
+  };
 in
 {
   options.dotfiles.desktop.niri = {
@@ -81,20 +91,19 @@ in
     };
 
     hj.packages = [
-      (inputs'.xwl-s.packages.${pkgs.stdenv.hostPlatform.system}.default)
+      (pkgs.lib'.fromInput inputs'.xwl-s)
       pkgs.nushell
       pkgs.jq
+      niriGCC
     ];
+
+    services.dbus.packages = [ niriGCC ];
 
     programs.niri = {
       enable = true;
-      package =
-        let
-          niriPackage = inputs'.niri.packages.${pkgs.stdenv.hostPlatform.system}.niri;
-        in
-        niriPackage.overrideAttrs {
-          doCheck = false;
-        };
+      package = (pkgs.lib'.fromInput inputs'.niri).overrideAttrs {
+        doCheck = false;
+      };
     };
 
     xdg.portal = {

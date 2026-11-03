@@ -12,7 +12,7 @@ in
   options.dotfiles.apps.helium.enable = lib.mkEnableOption "Helium browser";
 
   config = lib.mkIf cfg.enable {
-    hj.packages = [ self'.packages.${pkgs.stdenv.hostPlatform.system}.helium-browser ];
+    hj.packages = [ (pkgs.lib'.fromInput' self' "helium-browser") ];
 
     hj.xdg.config.files."net.imput.helium/WidevineCdm/latest-component-updated-widevine-cdm" = {
       text = ''

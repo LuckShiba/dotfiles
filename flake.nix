@@ -28,6 +28,9 @@
             ./modules
             inputs.dux-calendar.nixosModules.default
             inputs.dux-plugin-registry.nixosModules.default
+            {
+              nixpkgs.overlays = [ self.overlays.lib ];
+            }
           ];
         };
         raw = self.nixosModules.dotfiles;
@@ -37,7 +40,12 @@
         system:
         import ./pkgs {
           inherit self inputs system;
-          pkgs = nixpkgs.legacyPackages.${system};
+          pkgs = (
+            import nixpkgs {
+              inherit system;
+              overlays = [ self.overlays.lib ];
+            }
+          );
         }
       );
 
@@ -55,5 +63,13 @@
           TACK_NIX_CONF_TOKENS = 1;
         };
       });
+
+      overlays = {
+        lib = (
+          pkgs: prev: {
+            lib' = import ./lib { inherit lib pkgs; };
+          }
+        );
+      };
     };
 }

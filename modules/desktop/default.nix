@@ -12,6 +12,7 @@
     ./niri
     ./niri/dms.nix
     ./speech.nix
+    ./vellum.nix
   ];
 
   options.dotfiles.desktop.enable = lib.mkEnableOption "desktop dotfiles";

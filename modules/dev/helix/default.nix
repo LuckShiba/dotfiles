@@ -12,7 +12,7 @@ in
   options.dotfiles.dev.helix.enable = lib.mkEnableOption "Helix";
 
   config = lib.mkIf cfg.enable {
-    hj.packages = [ self'.packages.${pkgs.stdenv.hostPlatform.system}.helix ];
+    hj.packages = [ (pkgs.lib'.fromInput' self' "helix") ];
 
     hj.xdg.config.files = {
       "helix/config.toml".source = ./config.toml;

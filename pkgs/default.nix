@@ -1,14 +1,13 @@
 {
   inputs,
-  system,
   pkgs,
   ...
 }:
 let
-  helix = inputs.helix.packages.${system}.helix;
+  helix = pkgs.lib'.fromInput inputs.helix;
 
   zen = pkgs.callPackage ./zen.nix {
-    inherit inputs system;
+    inherit inputs;
   };
 in
 {

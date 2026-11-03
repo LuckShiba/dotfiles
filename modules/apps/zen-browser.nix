@@ -19,7 +19,7 @@ in
 
   config = lib.mkIf cfg.enable {
     hj.packages = [
-      (self'.packages.${pkgs.stdenv.hostPlatform.system}.zen.override {
+      ((pkgs.lib'.fromInput' self' "zen").override {
         extraPolicies = {
           AutofillAddressEnabled = true;
           AutofillCreditCardEnabled = false;

@@ -56,6 +56,7 @@ url = "dux:dux-plugin-registry"
 
 [inputs.niri]
 url = "me:niri"
+# url = "gh:niri-wm/niri/pull/4744/head"
 
 [inputs.fructose]
 url = "me:fructose"
@@ -84,3 +85,6 @@ url = "https://github.com/imputnet/helium-linux/releases/download/{tag}/helium-{
 type = "fixed"
 unpack = "file"
 tag = "{version}"
+
+[inputs.vellum]
+url = "gh:greyxp1/vellum"

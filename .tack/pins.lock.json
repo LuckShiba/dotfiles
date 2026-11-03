@@ -11,6 +11,7 @@
     "niri": "github:LuckShiba/niri",
     "nixpkgs": "github:NixOS/nixpkgs/nixpkgs-unstable",
     "tack": "github:manic-systems/tack",
+    "vellum": "github:greyxp1/vellum",
     "xwl-s": "github:Supreeeme/xwayland-satellite",
     "zen-browser": "github:0xc000022070/zen-browser-flake/beta"
   },
@@ -18,33 +19,33 @@
     "type": "github",
     "owner": "duxlabs-dev",
     "repo": "dux-calendar",
-    "rev": "1cc2a78cb59ecb46099c0d4a2cf0f5b88c043360",
-    "narHash": "sha256-z8VvbeqohKOVktfdOhZsV7Q8RkESdtg5+rtBfmn5u2M=",
-    "lastModified": 1793196317
+    "rev": "07cd4c3355a9b6374a2f0cc3544238475b80613d",
+    "narHash": "sha256-1aHyjGsdnWwgoamau6lwTu6Y/X9kIyz8woAkNlo4ZOA=",
+    "lastModified": 1793469095
   },
   "dux-greeter": {
     "type": "github",
     "owner": "duxlabs-dev",
     "repo": "dux-greeter",
-    "rev": "0f5de0577cc118091cab9ed8d7976919f0161251",
-    "narHash": "sha256-UZQX8yFA4Kg2UlduElencdA+QXQO9LcQJCqWzUHGZMk=",
-    "lastModified": 1793106621
+    "rev": "45b82d84d947a2c6491d4f16a5d0a84ee379dfeb",
+    "narHash": "sha256-4pQhSCByOSrC1XCXvpBgHrJHwMs3BU3IH02fZdREoPg=",
+    "lastModified": 1793444119
   },
   "dux-plugin-registry": {
     "type": "github",
     "owner": "duxlabs-dev",
     "repo": "dux-plugin-registry",
-    "rev": "0fb79ce25b21a6dabac87f4211bf65becab68ae3",
-    "narHash": "sha256-H+HzU0rnqNEgACisaGfBR5CqU0jatBAO0lexFr6cEl8=",
-    "lastModified": 1793156972
+    "rev": "71cd0d929a759e2c6514f1bfc7c399e726298df8",
+    "narHash": "sha256-gNsKbrJmJFAGFOLNJTmw/H8Lr+9sW3pZphhN7MYffEo=",
+    "lastModified": 1793617842
   },
   "dux-shell": {
     "type": "github",
     "owner": "duxlabs-dev",
     "repo": "dux-shell",
-    "rev": "9d279e7f88c0ec3f9561a22a8b3b068a4c2992e7",
-    "narHash": "sha256-b8W2MX4wplGQx175G8aJCMWST7cfu7YgQIqpfOKDdEk=",
-    "lastModified": 1793197964
+    "rev": "40630184fbae0ae128af6df404560c0d0bbd90a3",
+    "narHash": "sha256-/nnL+jkknWnXVEh4FwejFYiqIwrsNf2mO7UtUIl0cLc=",
+    "lastModified": 1793609207
   },
   "fructose": {
     "type": "github",
@@ -56,11 +57,11 @@
   },
   "helium-linux": {
     "type": "fixed",
-    "url": "https://github.com/imputnet/helium-linux/releases/download/0.20.2.1/helium-0.20.2.1-x86_64.AppImage",
-    "sha256": "sha256-rEkoQk0xyGP/86t1076HPfyS7eAOaIljTcvFiBoSA5c=",
+    "url": "https://github.com/imputnet/helium-linux/releases/download/0.20.3.1/helium-0.20.3.1-x86_64.AppImage",
+    "sha256": "sha256-H69Thkj+FKHqkuMlyxI4rojEeGZsteY9DSrxcP5MoDc=",
     "unpack": "file",
-    "tag": "0.20.2.1",
-    "version": "0.20.2.1"
+    "tag": "0.20.3.1",
+    "version": "0.20.3.1"
   },
   "helix": {
     "type": "github",
@@ -74,33 +75,41 @@
     "type": "github",
     "owner": "feel-co",
     "repo": "hjem",
-    "rev": "d219ef55ab7311d884cf33e114561082fec95f34",
-    "narHash": "sha256-BohcZsIqBOd6YL6+jUkdM4GE+aQc72E6yrqVyt1z5X4=",
-    "lastModified": 1793026809
+    "rev": "8408642aa3035135fa6d70269dc93e0814e2a4f6",
+    "narHash": "sha256-hmlUXxCk6On7Hrop/TyS3//dgI2BLvaN4TEsOq1ma+Y=",
+    "lastModified": 1793333241
   },
   "niri": {
     "type": "github",
     "owner": "LuckShiba",
     "repo": "niri",
-    "rev": "56f11821d46f2188869142e8514ae5a5f28a67ec",
-    "narHash": "sha256-MVkveUEEJmUmHzPQFyLX+iFPw3fD1A8/IWaUHAguzDA=",
-    "lastModified": 1792983078
+    "rev": "1dc50607a67516f0d0ef032b7bfcd0eceb5bd4d7",
+    "narHash": "sha256-/d0EjpsZ5qTSVEN5ioXs/ISTj1vXBdMl5+YwOwviCHs=",
+    "lastModified": 1793479604
   },
   "nixpkgs": {
     "type": "github",
     "owner": "NixOS",
     "repo": "nixpkgs",
-    "rev": "f05535a0efcb2134c478d1e88434fadf486d42b5",
-    "narHash": "sha256-2pkE69JpFRInaARSczZytcfPw83IL82E2KdhbWGwdMs=",
-    "lastModified": 1793136825
+    "rev": "5c9de89ec55bff981cb8da1a4ee92b10f1438ffc",
+    "narHash": "sha256-WDValiY9se78X2Wh7aWWaq/c7HN29U555+OKbHEzYrw=",
+    "lastModified": 1793582901
   },
   "tack": {
     "type": "github",
     "owner": "manic-systems",
     "repo": "tack",
-    "rev": "f7cce4f7e53c9482661b158824522fefef2d7920",
-    "narHash": "sha256-vOIIx/QU6xEjMZTMZM8GNNXS/p4Idvw8V09KT5zNwTI=",
-    "lastModified": 1792630541
+    "rev": "e23a2e52e369636d3f753c1e6a1929a9c2f23cf6",
+    "narHash": "sha256-GmTLGnYVdPmmh/DRfL3hQDChNnJoYw31F0zmmbG2sjc=",
+    "lastModified": 1793433204
+  },
+  "vellum": {
+    "type": "github",
+    "owner": "greyxp1",
+    "repo": "vellum",
+    "rev": "df2a2b27c217ddb3636a1eca384240d3fca750dc",
+    "narHash": "sha256-dDYPLMtBLv1I6ruL6HjgicsZCH2A/vgLc7Mv2lMftp8=",
+    "lastModified": 1793575534
   },
   "xwl-s": {
     "type": "github",
@@ -114,8 +123,8 @@
     "type": "github",
     "owner": "0xc000022070",
     "repo": "zen-browser-flake",
-    "rev": "f19490ac889eabb05bdb7e8dcb85225ee75bd87b",
-    "narHash": "sha256-kH/E0uJDslOgYcnmU+c0cm6HrUjsEtvZQKZtuQ1+uvo=",
-    "lastModified": 1792595242
+    "rev": "2656d974602749ca5594b133e3022a241ab5d4e0",
+    "narHash": "sha256-d1Tvbgn//HQ3f1PDh/iIMEpvuUu9Lc4lJqiwGl18cY8=",
+    "lastModified": 1793309674
   }
 }
