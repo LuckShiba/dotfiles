@@ -45,7 +45,7 @@ in
               abbr -a -c systemctl sysctl-c -r c -- status
               abbr -a -c systemctl sysctl-o -r o -- stop
               abbr -a -c systemctl sysctl-u -r u -- --user
-              
+
               abbr -a j  -- journalctl
               abbr -a -c journalctl journal-u -r u -- --user              
             ''

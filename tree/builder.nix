@@ -1,6 +1,6 @@
 {
   runCommand,
-  lib',
+  dots,
   findutils,
   coreutils,
   distEtc,
@@ -10,7 +10,7 @@
 }:
 
 let
-  builderScript = lib'.writeNuBin "tree-builder" ''
+  builderScript = dots.lib.writeNuBin "tree-builder" ''
     let src = $env.SRC
     let ref = $env.REF
     let out = $env.out
@@ -63,7 +63,10 @@ let
   '';
 in
 runCommand "build-file-tree" {
-  nativeBuildInputs = [ findutils coreutils ];
+  nativeBuildInputs = [
+    findutils
+    coreutils
+  ];
 
   SRC = distEtc;
   REF = emptyEtc;

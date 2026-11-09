@@ -1,4 +1,8 @@
-{ lib, self }:
+{
+  lib,
+  nixos,
+  system,
+}:
 {
   empty = lib.nixosSystem {
     modules = [
@@ -7,13 +11,13 @@
         programs.fish.enable = true;
       }
     ];
-    system = "x86_64-linux";
+    inherit system;
   };
 
   dist = lib.nixosSystem {
-    system = "x86_64-linux";
+    inherit system;
     modules = [
-      self.nixosModules.default
+      nixos
       {
         nixpkgs.config.allowUnfree = true;
 

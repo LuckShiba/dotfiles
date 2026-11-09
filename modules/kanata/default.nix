@@ -52,7 +52,7 @@ in
       ];
 
       serviceConfig = {
-        ExecStart = pkgs.lib'.writeNuBin "kanata-niri-switcher" ./kanata-niri-switcher.nu;
+        ExecStart = pkgs.dots.lib.writeNuBin "kanata-niri-switcher" ./kanata-niri-switcher.nu;
         Restart = "on-failure";
         RestartSec = "1s";
       };

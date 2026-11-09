@@ -1,20 +1,26 @@
 {
-  inputs,
+  pins,
   pkgs,
   ...
 }:
-rec {
+let
+  inherit (pkgs.dots.lib) fromInput;
+in
+{
   helium-browser = pkgs.callPackage ./helium-browser.nix {
-    src = inputs.helium-linux;
-    inherit (inputs._meta.helium-linux) version;
+    src = pins.helium-linux;
+    inherit (pins._meta.helium-linux) version;
   };
-  
-  helix = pkgs.lib'.fromInput inputs.helix;
-  
-  zen = pkgs.callPackage ./zen.nix {
-    inherit inputs;
-  };
-  zen-unwrapped = zen.unwrapped;
 
-  build-file-tree = pkgs.callPackage ./build-file-tree.nix;
+  zen = pkgs.callPackage ./zen.nix { inherit pins; };
+  zen-unwrapped = pkgs.dots.zen.unwrapped;
 }
+// pins.nixpkgs.lib.genAttrs [
+  "helix"
+  "niri"
+  "vellum"
+  "fructose"
+  "xwl-s"
+  "dux-shell"
+  "dux-greeter"
+] (name: fromInput pins.${name})

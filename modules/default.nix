@@ -60,24 +60,22 @@ in
       directory = cfg.user.homeDirectory;
     };
 
-    hj.packages =
-      with pkgs;
-      [
-        lazygit
-        fzf
-        bat
-        delta
-        eza
-        ripgrep
-        fd
-        wget2
-        dust
-        duf
-        bat-extras.batman
-        bat-extras.batdiff
-        bat-extras.prettybat
-        bat-extras.batgrep
-      ];
+    hj.packages = with pkgs; [
+      lazygit
+      fzf
+      bat
+      delta
+      eza
+      ripgrep
+      fd
+      wget2
+      dust
+      duf
+      bat-extras.batman
+      bat-extras.batdiff
+      bat-extras.prettybat
+      bat-extras.batgrep
+    ];
 
     hj.environment.sessionVariables = {
       PAGER = "bat";

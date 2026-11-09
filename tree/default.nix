@@ -1,10 +1,11 @@
 {
   pkgs,
   lib,
-  self,
+  nixos,
+  system,
 }:
 let
-  systems = import ./systems.nix { inherit lib self; };
+  systems = import ./systems.nix { inherit lib nixos system; };
   dist = systems.dist.config;
   empty = systems.empty.config;
   manifestDir = builtins.elemAt (builtins.match ".*(/nix/store/[^\" \n]+-hjem-manifests).*" (

@@ -2,7 +2,6 @@
   config,
   pkgs,
   lib,
-  inputs',
   ...
 }:
 let
@@ -36,7 +35,8 @@ in
   config = lib.mkIf (cfg.enable && duxCfg.enable) {
     systemd.user.services.dms.environment = {
       DMS_MODAL_LAYER = "overlay";
-    } // lib.optionalAttrs (duxCfg.ippHost != null) {
+    }
+    // lib.optionalAttrs (duxCfg.ippHost != null) {
       DMS_IPP_HOST = duxCfg.ippHost;
     };
 
@@ -55,7 +55,7 @@ in
 
     programs.dux-shell = {
       enable = true;
-      package = (pkgs.lib'.fromInput inputs'.dux-shell).override {
+      package = pkgs.dots.dux-shell.override {
         extraQtPackages = with pkgs.qt6Packages; [ qtwebsockets ];
       };
       systemd.target = "niri.service";
@@ -72,7 +72,7 @@ in
 
     services.displayManager.dux-greeter = lib.mkIf duxCfg.greeter.enable {
       enable = true;
-      package = pkgs.lib'.fromInput inputs'.dux-greeter;
+      package = pkgs.dots.dux-greeter;
 
       compositor = {
         name = "niri";

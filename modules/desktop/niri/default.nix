@@ -1,6 +1,5 @@
 {
   config,
-  inputs',
   lib,
   pkgs,
   ...
@@ -9,7 +8,7 @@ let
   cfg = config.dotfiles.desktop.niri;
   userCfg = config.dotfiles.user;
 
-  zen-spawn-focus = pkgs.lib'.writeNuBin "zen-spawn-focus" ''
+  zen-spawn-focus = pkgs.dots.lib.writeNuBin "zen-spawn-focus" ''
     let focused_ws = niri msg -j workspaces
       | from json
       | where is_focused == true
@@ -91,7 +90,7 @@ in
     };
 
     hj.packages = [
-      (pkgs.lib'.fromInput inputs'.xwl-s)
+      pkgs.dots.xwl-s
       pkgs.nushell
       pkgs.jq
       niriGCC
@@ -101,7 +100,7 @@ in
 
     programs.niri = {
       enable = true;
-      package = (pkgs.lib'.fromInput inputs'.niri).overrideAttrs {
+      package = pkgs.dots.niri.overrideAttrs {
         doCheck = false;
       };
     };

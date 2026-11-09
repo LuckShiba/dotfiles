@@ -1,6 +1,5 @@
 {
   config,
-  self',
   lib,
   pkgs,
   ...
@@ -12,7 +11,7 @@ in
   options.dotfiles.dev.helix.enable = lib.mkEnableOption "Helix";
 
   config = lib.mkIf cfg.enable {
-    hj.packages = [ (pkgs.lib'.fromInput' self' "helix") ];
+    hj.packages = [ pkgs.dots.helix ];
 
     hj.xdg.config.files = {
       "helix/config.toml".source = ./config.toml;

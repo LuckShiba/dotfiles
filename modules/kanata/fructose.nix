@@ -1,6 +1,5 @@
 {
   config,
-  inputs',
   lib,
   pkgs,
   ...
@@ -8,7 +7,7 @@
 let
   cfg = config.dotfiles.kanata.fructose;
   kanataConfig = pkgs.writeText "kanata.kbd" config.services.kanata.keyboards.default.config;
-  fructose = (pkgs.lib'.fromInput inputs'.fructose).overrideAttrs (old: {
+  fructose = pkgs.dots.fructose.overrideAttrs (old: {
     postPatch = (old.postPatch or "") + ''
       cp ${kanataConfig} kanata.kbd
     '';

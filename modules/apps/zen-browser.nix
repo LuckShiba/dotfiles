@@ -1,6 +1,5 @@
 {
   config,
-  self',
   lib,
   pkgs,
   ...
@@ -19,7 +18,7 @@ in
 
   config = lib.mkIf cfg.enable {
     hj.packages = [
-      ((pkgs.lib'.fromInput' self' "zen").override {
+      (pkgs.dots.zen.override {
         extraPolicies = {
           AutofillAddressEnabled = true;
           AutofillCreditCardEnabled = false;

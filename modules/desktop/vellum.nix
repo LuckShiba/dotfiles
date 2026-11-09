@@ -1,6 +1,5 @@
 {
   config,
-  inputs',
   lib,
   pkgs,
   ...
@@ -13,7 +12,7 @@ in
   config = lib.mkIf cfg.enable {
     services.vellum = {
       enable = true;
-      package = pkgs.lib'.fromInput inputs'.vellum;
+      package = pkgs.dots.vellum;
 
       # # Drawing
       # draw_on = "all" # "all" monitors or "current" only.

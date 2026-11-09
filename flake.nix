@@ -1,94 +1,27 @@
 {
   outputs =
-    { self, ... }@args:
+    { ... }:
     let
-      inputs = (import ./.tack) {
-        overrides = args.tackOverrides or { };
-      };
-      inherit (inputs) nixpkgs;
-
-      lib = nixpkgs.lib;
       systems = [
         "x86_64-linux"
+        "aarch64-linux"
       ];
-      forEachSystem = lib.genAttrs systems;
+
+      pins = import ./.tack { };
+      inherit (pins.nixpkgs) lib;
+      forEachSystem = f: lib.genAttrs systems (system: f (import ./. { inherit system pins; }));
+
+      common = import ./. { inherit pins; };
     in
     {
-      nixosModules = {
-        default = {
-          imports = [
-            inputs.hjem.nixosModules.default
-            self.nixosModules.dotfiles
-          ];
-        };
-        dotfiles = {
-          _module.args.self' = self;
-          _module.args.inputs' = inputs;
-          imports = [
-            ./modules
-            inputs.dux-calendar.nixosModules.default
-            inputs.dux-plugin-registry.nixosModules.default
-            {
-              nixpkgs.overlays = [ self.overlays.lib ];
-            }
-          ];
-        };
-        raw = self.nixosModules.dotfiles;
-      };
+      nixosModules.default = common.nixos;
+      overlays.default = common.overlay;
 
       packages = forEachSystem (
-        system:
-        (
-          let
-            pkgs = import nixpkgs {
-              inherit system;
-              overlays = [ self.overlays.lib ];
-            };
-          in
-          import ./pkgs {
-            inherit
-              self
-              inputs
-              system
-              pkgs
-              ;
-          }
-          // {
-            tree = import ./tree {
-              inherit
-                self
-                pkgs
-                lib
-                ;
-            };
-          }
-        )
+        dots: lib.filterAttrs (_: lib.isDerivation) dots // { default = dots.tree; }
       );
-
-      formatter = forEachSystem (system: nixpkgs.legacyPackages.${system}.nixfmt);
-
-      devShells = forEachSystem (system: {
-        default = nixpkgs.legacyPackages.${system}.mkShell {
-          packages = with nixpkgs.legacyPackages.${system}; [
-            nil
-            nixd
-            nixfmt
-            (inputs.tack.packages.${system}.tack.overrideAttrs {
-              doCheck = false;
-            })
-
-          ];
-
-          TACK_NIX_CONF_TOKENS = 1;
-        };
+      devShells = forEachSystem (dots: {
+        default = dots.shell;
       });
-
-      overlays = {
-        lib = (
-          pkgs: prev: {
-            lib' = import ./lib { inherit lib pkgs; };
-          }
-        );
-      };
     };
 }
