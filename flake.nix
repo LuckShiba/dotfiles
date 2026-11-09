@@ -38,15 +38,31 @@
 
       packages = forEachSystem (
         system:
-        import ./pkgs {
-          inherit self inputs system;
-          pkgs = (
-            import nixpkgs {
+        (
+          let
+            pkgs = import nixpkgs {
               inherit system;
               overlays = [ self.overlays.lib ];
-            }
-          );
-        }
+            };
+          in
+          import ./pkgs {
+            inherit
+              self
+              inputs
+              system
+              pkgs
+              ;
+          }
+          // {
+            tree = import ./tree {
+              inherit
+                self
+                pkgs
+                lib
+                ;
+            };
+          }
+        )
       );
 
       formatter = forEachSystem (system: nixpkgs.legacyPackages.${system}.nixfmt);
@@ -57,7 +73,10 @@
             nil
             nixd
             nixfmt
-            inputs.tack.packages.${system}.tack
+            (inputs.tack.packages.${system}.tack.overrideAttrs {
+              doCheck = false;
+            })
+
           ];
 
           TACK_NIX_CONF_TOKENS = 1;

@@ -58,7 +58,7 @@ in
         la = "eza -a --icons auto";
         lt = "eza --tree --icons auto";
         lla = "eza -la --icons auto";
-        tree = "eza --tree --icons";
+        tree = "eza --tree --icons auto";
         man = "batman";
       };
     };
